@@ -1,1 +1,17 @@
-/* CSS declarations go here */
+body {
+	background-color: #eee;
+}
+
+p, input, button {
+	font-family: Arial;
+	font-size: 11px;
+}
+
+input, button {
+	border: 1px solid #ccc;
+	background-color: white;
+}
+
+input:hover, button:hover {
+	background-color: #ddd;
+}
