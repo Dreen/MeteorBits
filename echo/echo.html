@@ -1,13 +1,12 @@
 <head>
-  <title>echo</title>
+	<title>Simple realtime echo</title>
 </head>
 
 <body>
-  {{> hello}}
+	<input type="text" /><button>Send</button>
+	{{> Messages}}
 </body>
 
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="Messages">
+	<p>{{msg}}</p>
 </template>
