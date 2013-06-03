@@ -1,4 +1,4 @@
 MeteorBits
 ==========
 
-Playing around with meteor
+ - echo: http://dreen_echo.meteor.com
