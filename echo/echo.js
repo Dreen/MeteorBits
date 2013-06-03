@@ -6,7 +6,8 @@ if (Meteor.isClient)
         {
                 'click button' : function ()
                 {
-                        var msg = document.getElementTagName("input")[0].value;
+                        var msg = document.querySelector("input").value;
+                        console.log(msg);
                 }
         });
 }
