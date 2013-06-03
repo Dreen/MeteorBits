@@ -1,4 +1,4 @@
-Messages = new Meteor.Collection("messages");
+var Messages = new Meteor.Collection("Messages");
 
 if (Meteor.isClient)
 {
@@ -7,9 +7,16 @@ if (Meteor.isClient)
                 'click button' : function ()
                 {
                         var msg = document.querySelector("input").value;
-                        console.log(msg);
+                        Messages.insert({
+                                'msg': msg
+                        });
                 }
         });
+
+        Template.Messages.getMessages = function()
+        {
+                return Messages.find();
+        };
 }
 
 if (Meteor.isServer)
