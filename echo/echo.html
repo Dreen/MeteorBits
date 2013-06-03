@@ -3,11 +3,18 @@
 </head>
 
 <body>
-	<input type="text" /><button>Send</button>
+	{{> MsgBox}}
 	<hr />
 	{{> Messages}}
 </body>
 
+<template name="MsgBox">
+	<input type="text" />
+	<button>Send</button>
+</template>
+
 <template name="Messages">
-	<p>{{msg}}</p>
+	{{#each Messages}}
+		<p>{{msg}}</p>
+	{{/each}}
 </template>
