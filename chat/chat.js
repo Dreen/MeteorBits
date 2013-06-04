@@ -10,10 +10,16 @@ if (Meteor.isClient)
                         var nick = prompt("Enter your name");
                         Session.set('nick', nick);
                         Users.insert({
-                                'nick': nick
+                                'nick': nick,
+                                'active': Date.now()
                         });
                 }
         });
+
+        Meteor.setInterval(function()
+        {
+                Meteor.call('usercheck', Session.get('nick'));
+        }, 1000);
 
         Template.Input.events(
         {
@@ -21,7 +27,7 @@ if (Meteor.isClient)
                 {
                         var msg = document.querySelector("#msginput").value;
                         Messages.insert({
-                                'time': new Date().getTime(),
+                                'time': Date.now(),
                                 'nick': Session.get('nick'),
                                 'msg': msg
                         });
@@ -47,8 +53,19 @@ if (Meteor.isClient)
 
 if (Meteor.isServer)
 {
-        Meteor.startup(function()
-        {
-                Users.remove();
+        Meteor.methods({
+                usercheck: function (nick)
+                {
+                        Users.update({
+                                'nick': nick
+                        }, { $set: {
+                                'active': Date.now()
+                        }});
+                }
         });
+
+        Meteor.setInterval(function()
+        {
+                Users.remove({'active': {$lt: (Date.now() - 60000)}});
+        }, 1000);
 }
