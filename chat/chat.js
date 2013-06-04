@@ -1,19 +1,20 @@
-if (Meteor.isClient) {
-  Template.hello.greeting = function () {
-    return "Welcome to chat.";
-  };
-
-  Template.hello.events({
-    'click input' : function () {
-      // template data, if any, is available in 'this'
-      if (typeof console !== 'undefined')
-        console.log("You pressed the button");
-    }
-  });
-}
-
-if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
-}
+//var Messages = new Meteor.Collection("Messages");
+//
+//if (Meteor.isClient)
+//{
+//        Template.MsgBox.events(
+//        {
+//                'click button' : function ()
+//                {
+//                        var msg = document.querySelector("input").value;
+//                        Messages.insert({
+//                                'msg': msg
+//                        });
+//                }
+//        });
+//
+//        Template.Messages.getMessages = function()
+//        {
+//                return Messages.find();
+//        };
+//}
