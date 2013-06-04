@@ -3,6 +3,18 @@ var Users = new Meteor.Collection("Users");
 
 if (Meteor.isClient)
 {
+        Meteor.startup(function()
+        {
+                if(!Session.get('nick'))
+                {
+                        var nick = prompt("Enter your name");
+                        Session.set('uid', nick);
+                        Users.insert({
+                                'nick': nick
+                        });
+                }
+        });
+
         Template.Input.events(
         {
                 'click button' : function ()
@@ -10,7 +22,7 @@ if (Meteor.isClient)
                         var msg = document.querySelector("#msginput").value;
                         Messages.insert({
                                 'time': new Date().getTime(),
-                                'nick': 'Nick',
+                                'nick': Session.get('nick'),
                                 'msg': msg
                         });
                 }
@@ -25,4 +37,13 @@ if (Meteor.isClient)
         {
                 return Users.find();
         };
+}
+
+if (Meteor.isServer)
+{
+        Meteor.startup(function()
+        {
+                Users.remove();
+        });
+
 }
