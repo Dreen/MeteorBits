@@ -5,10 +5,10 @@ if (Meteor.isClient)
 {
         Meteor.startup(function()
         {
-                if(!Session.get('nick'))
+                if (!Session.get('nick'))
                 {
                         var nick = prompt("Enter your name");
-                        Session.set('uid', nick);
+                        Session.set('nick', nick);
                         Users.insert({
                                 'nick': nick
                         });
@@ -25,12 +25,18 @@ if (Meteor.isClient)
                                 'nick': Session.get('nick'),
                                 'msg': msg
                         });
+                        document.querySelector("#msginput").value = '';
                 }
         });
 
         Template.Messages.Messages = function()
         {
                 return Messages.find({}, {sort: {time: -1}});
+        };
+        Template.message.date = function(t)
+        {
+                var date = new Date(t);
+                return date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
         };
 
         Template.Users.Users = function()
@@ -45,5 +51,4 @@ if (Meteor.isServer)
         {
                 Users.remove();
         });
-
 }
