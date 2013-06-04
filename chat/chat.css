@@ -1,1 +1,50 @@
-/* CSS declarations go here */
+html, body {
+    height: 100%;
+    background-color:#eee;
+}
+
+.mainFill { 
+    min-height: 100%;
+    height: 100%;
+}
+
+.rowA {
+    height: 95%;
+}
+
+.rowB {
+    height: 5%;
+}
+
+.nick {
+	font-weight: bold;
+	margin-right: 10px;
+}
+
+.msg {
+	
+}
+
+#userlistwnd, #chatwnd {
+	overflow: auto;
+}
+
+#userlist{
+	margin:0px;
+	padding:0px;
+}
+
+#userlist li{
+	display:block;
+	lsit-style:none;
+	padding:2px;
+	margin:0px;
+	border-bottom:1px solid #ccc;
+}
+
+.red{
+	background-color: red;
+}
+.blue{
+	background-color: blue;
+}
